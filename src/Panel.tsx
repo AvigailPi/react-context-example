@@ -1,11 +1,15 @@
 import { FC } from "react";
 import { Button } from "./Button";
 
-export const Panel: FC = () => {
+type PanelProps = {
+    setCount: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export const Panel: FC<PanelProps> = ({setCount}) => {
     return (
         <div>
-            <Button isAdd={true}/>
-            <Button isAdd={false}/>
+            <Button isAdd={true} setCount={setCount}/>
+            <Button isAdd={false} setCount={setCount}/>
         </div>
     );
 };

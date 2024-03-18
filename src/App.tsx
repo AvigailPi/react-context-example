@@ -1,18 +1,16 @@
-import { useContext } from "react";
+import { useState } from "react";
 import { Panel } from "./Panel";
-import { SetCountContext } from "./contexts/SetCountContext";
 import "./App.css";
 
 function App() {
-    const setCountContext = useContext(SetCountContext);
-    if(setCountContext === null) throw new Error("no context!");
+    const [count, setCount] = useState(0);
 
     return (
         <>
-        <h2>{setCountContext.count}</h2>
-            <Panel/>
+        <h2>{count}</h2>
+            <Panel setCount={setCount}/>
             <br/>
-            <Panel/>
+            <Panel setCount={setCount}/>
         </>
     );
 }

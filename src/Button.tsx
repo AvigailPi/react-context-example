@@ -1,22 +1,14 @@
-import { FC, useContext } from "react";
-import { SetCountContext } from "./contexts/SetCountContext";
+import { FC } from "react";
 
 type ButtonProps = {
     isAdd: boolean;
-}
+    setCount: React.Dispatch<React.SetStateAction<number>>;
+};
 
-export const Button: FC<ButtonProps> = ({isAdd}) => {
-    const setCountContext = useContext(SetCountContext);
-    if(setCountContext === null) throw new Error("no context!");
-
-
+export const Button: FC<ButtonProps> = ({ isAdd, setCount }) => {
     const handleClick = () => {
-        setCountContext.setCount(prev => isAdd ? prev + 1 : prev - 1);
-    }
+        setCount((prev) => (isAdd ? prev + 1 : prev - 1));
+    };
 
-    return (
-        <button onClick={handleClick}>
-            {isAdd ? "add 1" : "subtract 1"}
-        </button>
-    )
-}
+    return <button onClick={handleClick}>{isAdd ? "add 1" : "subtract 1"}</button>;
+};
